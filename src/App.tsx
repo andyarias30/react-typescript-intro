@@ -1,24 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+function ChildComponents(props: {someMoney:number | any, car: string}){
+  return(
+    <h2>Child components {props.someMoney} and car {props.car}</h2>
+  )
+}
+
 function App() {
+  const [counter , setCounter] = React.useState<number | boolean>(0)
+  const handleFormSubmit = (e:React.FormEvent) => {
+    e.preventDefault
+
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+    <header className='App-header'>
+      <h2>My typescript react app</h2>
+      {counter}
+
+    {/* @ts-ignore */}
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+
+      <button onClick={() => setCounter(false)}>false</button>
+      <ChildComponents someMoney={1200} car={'Tesla'} />
+
+      <form action='' onSubmit={handleFormSubmit}>
+      <label htmlFor="">
+        Email:
+        <input type='email' />
+      </label>
+      <label htmlFor="">
+        Password:
+        <input type="password" />
+      </label>
+      </form>
+    </header>
     </div>
   );
 }
